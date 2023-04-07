@@ -32,7 +32,7 @@ button:hover {
   display: flex;
   justify-content: flex-end;
   margin: 0.3em;
-  font-size: 3.5em;
+  font-size: 2em;
   border: 1px solid #fff;
   background-color: #fff;
 }
