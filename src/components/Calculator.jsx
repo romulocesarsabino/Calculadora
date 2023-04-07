@@ -8,40 +8,47 @@ const Calculator = () => {
   const [oldNum, setOldNum] = useState(0);
   const [operator, setOperator] = useState(0);
 
-  function inputNum(e) {
-    const input = e.target.value;
+  const inputNum = (e) => {
+    var input = e.target.value;
     if (num === 0) {
       setNum(input);
     } else {
       setNum(num + input);
     }
-  }
+  };
 
-  function clear() {
+  const clear = () => {
     setNum(0);
-  }
+  };
 
-  function porcentage() {
+  const porcentage = () => {
     setNum(num / 100);
-  }
+  };
 
-  function changeSign() {
+  const changeSign = () => {
     if (num > 0) {
       setNum(-num);
     } else {
       setNum(Math.abs(num));
     }
-  }
+  };
 
   const calculate = () => {
+    const oldNumNumber = parseFloat(oldNum.replace(',', '.'));
+    const numNumber = parseFloat(num.replace(',', '.'));
+
     if (operator === '/') {
-      setNum(parseFloat(oldNum) / parseFloat(num));
+      setNum((oldNumNumber / numNumber).toLocaleString('pt-BR'));
+      //setNum(parseFloat(oldnum) / parseFloat(num));
     } else if (operator === 'x') {
-      setNum(parseFloat(oldNum) * parseFloat(num));
+      setNum((oldNumNumber * numNumber).toLocaleString('pt-BR'));
+      //setNum(parseFloat(oldnum) * parseFloat(num));
     } else if (operator === '-') {
-      setNum(parseFloat(oldNum) - parseFloat(num));
+      setNum((oldNumNumber - numNumber).toLocaleString('pt-BR'));
+      //setNum(parseFloat(oldnum) - parseFloat(num));
     } else if (operator === '+') {
-      setNum(parseFloat(oldNum) + parseFloat(num));
+      setNum((oldNumNumber + numNumber).toLocaleString('pt-BR'));
+      //setNum(parseFloat(oldnum) + parseFloat(num));
     }
   };
 
@@ -60,9 +67,15 @@ const Calculator = () => {
           <Box m={2} />
           <h1 className="name">CALCULADORA</h1>
           <h1 className="result">{num}</h1>
-          <button onClick={clear}>AC</button>
-          <button onClick={changeSign}>+/-</button>
-          <button onClick={porcentage}>%</button>
+          <button onClick={clear} className="lighter-gray">
+            AC
+          </button>
+          <button onClick={changeSign} className="lighter-gray">
+            +/-
+          </button>
+          <button onClick={porcentage} className="lighter-gray">
+            %
+          </button>
           <button className="orange" onClick={operatorHandler} value="/">
             /
           </button>
@@ -102,17 +115,18 @@ const Calculator = () => {
           <button className="orange" onClick={operatorHandler} value="+">
             +
           </button>
-          <button className="gray" onClick={inputNum} value={0}>
+          <button
+            style={{ width: '6.5em', textAlign: 'left', paddingLeft: '1em' }}
+            className="gray"
+            onClick={inputNum}
+            value={0}
+          >
             0
           </button>
 
           <button className="gray" onClick={inputNum} value={'.'}>
             ,
           </button>
-          <button className="gray" style={{ visibility: 'hidden' }}>
-            ,
-          </button>
-
           <button className="orange" onClick={calculate}>
             =
           </button>

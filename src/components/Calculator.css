@@ -22,9 +22,22 @@ button:hover {
   color: white;
 }
 
+.orange:focus {
+  background-color: #fff;
+  color: #ff9500;
+}
+
 .gray {
   background-color: #505050;
   color: white;
+}
+
+.gray:focus {
+  background-color: #929292;
+}
+
+.lighter-gray:focus {
+  background-color: #fff;
 }
 
 .result {
